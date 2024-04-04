@@ -1,0 +1,5 @@
+/* Note that these styles are not scoped and
+   will be applied to all Title components */
+.mantine-Title-root {
+  margin-bottom: 1rem;
+}

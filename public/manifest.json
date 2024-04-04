@@ -1,0 +1,36 @@
+{
+  "name": "Next App",
+  "short_name": "Next App",
+  "start_url": "/",
+  "scope": "/",
+  "theme_color": "#4d5771",
+  "background_color": "#8bc8ab",
+  "display": "standalone",
+  "orientation": "any",
+  "dir": "auto",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "icon-default.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-default-large.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "purpose": "maskable",
+      "src": "icon-default-maskable.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "purpose": "maskable",
+      "src": "icon-default-maskable-large.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
