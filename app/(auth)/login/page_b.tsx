@@ -18,7 +18,7 @@ import {
 } from "@mantine/core";
 
 import { LoginSchema } from "./schema";
-import { testAction } from "./actions";
+// import { serverAction } from "./actions";
 
 import classes from "./page.module.css";
 
@@ -42,8 +42,7 @@ export default function Login() {
           Registrate aquí.
         </Anchor>
       </Text>
-      <form action={testAction}>
-        {/* <form onSubmit={form.onSubmit(console.log)}> */}
+      <form onSubmit={form.onSubmit(console.log)}>
         <Paper withBorder shadow="md" p={25} mt={20} radius="md">
           <TextInput
             label="Email"

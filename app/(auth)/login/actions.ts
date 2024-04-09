@@ -9,6 +9,7 @@ export async function serverAction(prevState: any, formData: FormData) {
   let errors: { [key: string]: string } = {};
 
   try {
+    // Check if user is authorized
     // Return early if the form data is invalid
     if (!result.success) {
       result.error.issues.forEach(
