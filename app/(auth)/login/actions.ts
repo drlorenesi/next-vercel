@@ -1,23 +1,14 @@
 "use server";
 
-import { LoginSchema } from "./schema";
+import { LoginSchema, LoginType } from "./schema";
 
-export async function serverAction(prevState: any, formData: FormData) {
-  const data = Object.fromEntries(formData.entries());
-  const result = LoginSchema.safeParse(data);
-
-  let errors: { [key: string]: string } = {};
-
+export async function serverAction(values: LoginType) {
+  await new Promise((resolve) => setTimeout(resolve, 500));
+  // throw new Error("There was a server error...");
   try {
-    // Check if user is authorized
-    // Return early if the form data is invalid
-    if (!result.success) {
-      result.error.issues.forEach(
-        (issue) => (errors[issue.path[0]] = issue.message)
-      );
-      return { errors };
-    }
-    // Process data
+    const result = LoginSchema.safeParse(values);
+    if (!result.success) return result.error.issues;
+    return result;
   } catch (error) {
     throw new Error("There was a server error...");
   }
