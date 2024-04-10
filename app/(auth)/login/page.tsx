@@ -18,7 +18,7 @@ import {
 
 import SubmitButton from "./submit-button";
 
-import { LoginSchema, LoginType } from "./schema";
+import { LoginSchema } from "./schema";
 import { serverAction } from "./actions";
 
 import classes from "./page.module.css";
@@ -32,9 +32,13 @@ export default function Login() {
     validate: zodResolver(LoginSchema),
   });
 
-  const clientAction = async (formData: LoginType) => {
+  const clientAction = async (formData: FormData) => {
+    if (form.validate().hasErrors) return;
     const result = await serverAction(formData);
-    console.log(result);
+    if (!result.success) return console.log("Server error...", result);
+    // Process form
+    console.log("Form submitted!", result);
+    form.reset();
   };
 
   return (
@@ -49,7 +53,7 @@ export default function Login() {
         </Anchor>
       </Text>
 
-      <form onSubmit={form.onSubmit((values) => clientAction(values))}>
+      <form action={clientAction}>
         <Paper withBorder shadow="md" p={25} mt={20} radius="md">
           <TextInput
             name="email"
