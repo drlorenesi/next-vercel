@@ -12,3 +12,6 @@ export const RegisterSchema = z
     message: "Passwords don't match",
     path: ["confirm"], // path of error
   });
+
+// extract the inferred type
+export type RegisterType = z.infer<typeof RegisterSchema>;
