@@ -1,4 +1,9 @@
+"use client";
+
 import Link from "next/link";
+import { useForm } from "@mantine/form";
+import { zodResolver } from "mantine-form-zod-resolver";
+
 import {
   Paper,
   Title,
@@ -13,11 +18,28 @@ import {
   rem,
 } from "@mantine/core";
 import { IconArrowLeft } from "@tabler/icons-react";
-import { handleSubmit } from "./actions";
+import SubmitButton from "./submit-button";
+
+import { ResetSchema } from "./schema";
+import { serverAction } from "./actions";
 
 import classes from "./page.module.css";
 
 export default function Solicitar() {
+  const form = useForm({
+    initialValues: {
+      email: "",
+    },
+    validate: zodResolver(ResetSchema),
+  });
+  const clientAction = async (formData: FormData) => {
+    if (form.validate().hasErrors) return;
+    const result = await serverAction(formData);
+    if (!result.success) return console.log("Server error...", result);
+    // Process form
+    console.log("Form submitted!", result);
+    form.reset();
+  };
   return (
     <Container size={460} my={20}>
       <Title className={classes.title} ta="center">
@@ -27,9 +49,14 @@ export default function Solicitar() {
         Por favor ingresa el correo electrónico que usaste para crear tu cuenta.
       </Text>
 
-      <form action={handleSubmit}>
+      <form action={clientAction}>
         <Paper withBorder shadow="md" p={25} radius="md" mt="xl">
-          <TextInput label="Email" placeholder="yo@granada.com.gt" />
+          <TextInput
+            name="email"
+            label="Email"
+            placeholder="tucorreo@granada.com.gt"
+            {...form.getInputProps("email")}
+          />
           <Group justify="space-between" mt="lg" className={classes.controls}>
             <Anchor
               c="dimmed"
@@ -46,9 +73,7 @@ export default function Solicitar() {
                 <Box ml={5}>Regresar a inicio</Box>
               </Center>
             </Anchor>
-            <Button type="submit" className={classes.control}>
-              Solicitar reinicio
-            </Button>
+            <SubmitButton />
           </Group>
         </Paper>
       </form>
