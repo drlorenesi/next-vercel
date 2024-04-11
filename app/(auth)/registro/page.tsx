@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useForm } from "@mantine/form";
 import { zodResolver } from "mantine-form-zod-resolver";
 
@@ -21,6 +22,8 @@ import { serverAction } from "./actions";
 import classes from "./page.module.css";
 
 export default function Login() {
+  const router = useRouter();
+
   const form = useForm({
     initialValues: {
       name: "",
@@ -38,7 +41,7 @@ export default function Login() {
     if (!result.success) return console.log("Server error...", result);
     // Process form
     console.log("Form submitted!", result);
-    form.reset();
+    router.push("/gracias");
   };
 
   return (
