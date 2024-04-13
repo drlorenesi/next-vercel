@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-// import { revalidatePath } from "next/cache";
-// import { redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 import { useForm } from "@mantine/form";
 import { zodResolver } from "mantine-form-zod-resolver";
 import toast from "react-hot-toast";
@@ -38,19 +37,23 @@ export default function Login() {
   const clientAction = async (formData: FormData) => {
     if (form.validate().hasErrors) return;
     const supabase = createClient();
-    const data = {
+    const { error } = await supabase.auth.signUp({
       email: formData.get("email") as string,
       password: formData.get("password") as string,
-    };
-    const { error } = await supabase.auth.signUp(data);
-
-    if (error?.status === 500) {
-      console.log(error);
-      toast.error("Error al registrar a nuevo usario");
-      return;
-    }
-    // revalidatePath("/", "layout");
-    // redirect("/");
+      options: {
+        data: {
+          name: formData.get("name"),
+          lastName: formData.get("lastName"),
+          displayName: `${formData.get("name")} ${formData.get("lastName")}`,
+        },
+      },
+    });
+    console.log(error);
+    // if (error?.status === 500) {
+    //   toast.error("Error al registrar a nuevo usario");
+    //   return;
+    // }
+    // redirect("/login");
   };
 
   return (
