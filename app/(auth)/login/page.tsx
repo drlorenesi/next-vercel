@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { revalidatePath } from "next/cache";
+// import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { useForm } from "@mantine/form";
 import { zodResolver } from "mantine-form-zod-resolver";
@@ -39,7 +39,7 @@ export default function Login() {
     const supabase = createClient();
     const { error } = await supabase.auth.signInWithPassword({
       email: formData.get("email") as string,
-      password: formData.get("password") as string,
+      password: formData.get("pass") as string,
     });
 
     if (error?.status === 400) {
@@ -47,7 +47,7 @@ export default function Login() {
       toast.error("Credenciales inválidas");
       return;
     }
-    revalidatePath("/", "layout");
+    // revalidatePath("/", "layout");
     redirect("/");
   };
 

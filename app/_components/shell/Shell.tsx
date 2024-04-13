@@ -57,6 +57,10 @@ const Shell: React.FC<ShellProps> = ({ children, ...props }) => {
     toggleMobile();
   };
 
+  const handleLogout = async () => {
+    console.log("Logging out...");
+  };
+
   return (
     <AppShell
       header={{ height: 60 }}
@@ -133,6 +137,7 @@ const Shell: React.FC<ShellProps> = ({ children, ...props }) => {
                     // <IconLogout style={{ width: rem(14), height: rem(14) }} />
                     <IconLogout style={{ width: "65%", height: "65%" }} />
                   }
+                  onClick={handleLogout}
                 >
                   Cerrar Sesión
                 </Menu.Item>
