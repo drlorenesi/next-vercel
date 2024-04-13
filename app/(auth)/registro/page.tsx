@@ -48,12 +48,11 @@ export default function Login() {
         },
       },
     });
-    console.log(error);
-    // if (error?.status === 500) {
-    //   toast.error("Error al registrar a nuevo usario");
-    //   return;
-    // }
-    // redirect("/login");
+    if (error?.status === 500) {
+      toast.error("Error al registrar a nuevo usario");
+      return;
+    }
+    redirect("/gracias");
   };
 
   return (
