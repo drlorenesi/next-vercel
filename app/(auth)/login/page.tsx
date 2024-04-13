@@ -42,7 +42,6 @@ export default function Login() {
     });
 
     if (error?.status === 400) {
-      console.log(error);
       toast.error("Credenciales inválidas");
       return;
     }
