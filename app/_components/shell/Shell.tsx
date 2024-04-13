@@ -3,7 +3,7 @@
 import React, { ReactNode } from "react";
 import Link from "next/link";
 import cx from "clsx";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   ActionIcon,
   AppShell,
@@ -30,6 +30,9 @@ import {
   IconSun,
   IconUserCog,
 } from "@tabler/icons-react";
+import toast from "react-hot-toast";
+// Utils
+import { createClient } from "@/utils/supabase/client";
 // Components
 import Footer from "./Footer";
 // Styles
@@ -52,13 +55,18 @@ const Shell: React.FC<ShellProps> = ({ children, ...props }) => {
   });
   // Routing
   const pathname = usePathname();
+  const router = useRouter();
 
   const closeMobileNavbar = () => {
     toggleMobile();
   };
 
   const handleLogout = async () => {
-    console.log("Logging out...");
+    const supabase = createClient();
+    const { error } = await supabase.auth.signOut();
+    if (error) return toast.error("Error en finalizar sesión.");
+    toast.success("Sesión terminada.");
+    router.push("/login");
   };
 
   return (

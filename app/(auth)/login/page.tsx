@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-// import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { useForm } from "@mantine/form";
 import { zodResolver } from "mantine-form-zod-resolver";
@@ -47,7 +46,7 @@ export default function Login() {
       toast.error("Credenciales inválidas");
       return;
     }
-    // revalidatePath("/", "layout");
+    toast.success("Sesión iniciada!");
     redirect("/");
   };
 

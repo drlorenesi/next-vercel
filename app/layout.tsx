@@ -6,7 +6,7 @@ import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
 import "./styles.css";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
