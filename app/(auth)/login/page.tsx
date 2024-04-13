@@ -1,8 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { useForm } from "@mantine/form";
 import { zodResolver } from "mantine-form-zod-resolver";
+import toast from "react-hot-toast";
 
 import {
   TextInput,
@@ -16,10 +19,9 @@ import {
   Group,
 } from "@mantine/core";
 
+import { createClient } from "@/utils/supabase/client";
 import SubmitButton from "./submit-button";
-
 import { LoginSchema } from "./schema";
-import { serverAction } from "./actions";
 
 import classes from "./page.module.css";
 
@@ -34,11 +36,18 @@ export default function Login() {
 
   const clientAction = async (formData: FormData) => {
     if (form.validate().hasErrors) return;
-    const result = await serverAction(formData);
-    if (!result.success) return console.log("Server error...", result);
-    // Process form
-    console.log("Form submitted!", result);
-    form.reset();
+    const supabase = createClient();
+    const { error } = await supabase.auth.signInWithPassword({
+      email: formData.get("email") as string,
+      password: formData.get("password") as string,
+    });
+
+    if (error?.status === 400) {
+      toast.error("Credenciales inválidas");
+      return;
+    }
+    revalidatePath("/", "layout");
+    redirect("/");
   };
 
   return (

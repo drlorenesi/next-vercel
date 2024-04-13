@@ -1,4 +1,5 @@
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
+import { Toaster } from "react-hot-toast";
 // Import styles of packages that you've installed.
 // All packages except `@mantine/hooks` require styles imports
 import "@mantine/core/styles.css";
@@ -18,6 +19,7 @@ export default function RootLayout({
       </head>
       <body>
         <MantineProvider>{children}</MantineProvider>
+        <Toaster />
       </body>
     </html>
   );

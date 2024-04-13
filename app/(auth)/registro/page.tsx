@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+// import { revalidatePath } from "next/cache";
+// import { redirect } from "next/navigation";
 import { useForm } from "@mantine/form";
 import { zodResolver } from "mantine-form-zod-resolver";
+import toast from "react-hot-toast";
 
 import {
   TextInput,
@@ -14,16 +16,14 @@ import {
   Text,
   Container,
 } from "@mantine/core";
-import SubmitButton from "./submit-button";
 
+import { createClient } from "@/utils/supabase/client";
+import SubmitButton from "./submit-button";
 import { RegisterSchema } from "./schema";
-import { serverAction } from "./actions";
 
 import classes from "./page.module.css";
 
 export default function Login() {
-  const router = useRouter();
-
   const form = useForm({
     initialValues: {
       name: "",
@@ -37,11 +37,20 @@ export default function Login() {
 
   const clientAction = async (formData: FormData) => {
     if (form.validate().hasErrors) return;
-    const result = await serverAction(formData);
-    if (!result.success) return console.log("Server error...", result);
-    // Process form
-    console.log("Form submitted!", result);
-    router.push("/gracias");
+    const supabase = createClient();
+    const data = {
+      email: formData.get("email") as string,
+      password: formData.get("password") as string,
+    };
+    const { error } = await supabase.auth.signUp(data);
+
+    if (error?.status === 500) {
+      console.log(error);
+      toast.error("Error al registrar a nuevo usario");
+      return;
+    }
+    // revalidatePath("/", "layout");
+    // redirect("/");
   };
 
   return (
