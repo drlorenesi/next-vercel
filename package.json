@@ -2,9 +2,6 @@
   "name": "next-vercel",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "node": ">=20.8.1"
-  },
   "scripts": {
     "seed": "NODE_ENV=development node --env-file .env ./setup/seedData.js",
     "dev": "next dev --turbo",
