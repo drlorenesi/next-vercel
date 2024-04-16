@@ -1,4 +1,5 @@
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
+import { DatesProvider } from "@mantine/dates";
 import { Toaster } from "react-hot-toast";
 // Import styles of packages that you've installed.
 // All packages except `@mantine/hooks` require styles imports
@@ -18,7 +19,9 @@ export default async function RootLayout({
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body>
-        <MantineProvider>{children}</MantineProvider>
+        <DatesProvider settings={{ locale: "es" }}>
+          <MantineProvider>{children}</MantineProvider>
+        </DatesProvider>
         <Toaster />
       </body>
     </html>

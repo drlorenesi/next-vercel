@@ -8,6 +8,21 @@ export async function updateSession(request: NextRequest) {
     },
   });
 
+  const publicUrls = [
+    "/cambiar",
+    "/confirmar",
+    "/exito",
+    "/gracias",
+    "/login",
+    "/registro",
+    "/solicitar",
+    "/verificar",
+  ];
+
+  if (publicUrls.includes(request.nextUrl.pathname)) {
+    return response;
+  }
+
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,

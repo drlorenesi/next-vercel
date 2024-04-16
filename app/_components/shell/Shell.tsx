@@ -136,6 +136,7 @@ const Shell: React.FC<ShellProps> = ({ children, ...props }) => {
                     // <IconUserCog style={{ width: rem(14), height: rem(14) }} />
                     <IconUserCog style={{ width: "65%", height: "65%" }} />
                   }
+                  onClick={() => router.push("/perfil")}
                 >
                   Mi Perfil
                 </Menu.Item>

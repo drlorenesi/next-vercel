@@ -15,7 +15,7 @@
     "@mantine/form": "^7.8.0",
     "@mantine/hooks": "^7.8.0",
     "@supabase/ssr": "^0.3.0",
-    "@supabase/supabase-js": "^2.42.3",
+    "@supabase/supabase-js": "^2.42.4",
     "@tabler/icons-react": "^3.2.0",
     "clsx": "^2.1.0",
     "dayjs": "^1.11.10",
@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/react": "^18",
+    "@types/react": "^18.2.79",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",

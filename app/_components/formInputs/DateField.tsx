@@ -1,20 +1,35 @@
-"use client";
-
-import dayjs from "dayjs";
-import customParseFormat from "dayjs/plugin/customParseFormat";
 import { DateInput } from "@mantine/dates";
+import { UseFormReturnType } from "@mantine/form";
+import "dayjs/locale/es";
 
-// It is required to extend dayjs with customParseFormat plugin
-// in order to parse dates with custom format
-dayjs.extend(customParseFormat);
+interface DateFieldProps {
+  clearable: boolean;
+  valueFormat: string;
+  label: string;
+  placeholder: string;
+  name: string;
+  form: UseFormReturnType<any>;
+  mb?: string;
+}
 
-export default function DateField() {
+export const DateField: React.FC<DateFieldProps> = ({
+  clearable,
+  valueFormat,
+  label,
+  placeholder,
+  name,
+  form,
+  mb,
+}) => {
   return (
     <DateInput
-      clearable
-      valueFormat="DD/MM/YYYY"
-      label="Start Date"
-      placeholder="Pick date"
+      clearable={clearable}
+      valueFormat={valueFormat}
+      label={label}
+      placeholder={placeholder}
+      name={name}
+      {...form.getInputProps(name)}
+      mb={mb}
     />
   );
-}
+};
