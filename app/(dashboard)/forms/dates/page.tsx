@@ -7,10 +7,11 @@ import dayjs from "dayjs";
 
 import SubmitButton from "./submit-button";
 import { DateSchema } from "./schema";
-import { DateField } from "@/app/_components/formInputs/DateField";
+import DateField from "@/app/_components/formInputs/DateField";
 
 export default function Dates() {
   const form = useForm({
+    mode: "uncontrolled", // ADD TO OTHER FORMS
     initialValues: {
       startDate: dayjs(new Date()).startOf("month").toDate(),
       endDate: dayjs(new Date()).toDate(),
@@ -34,15 +35,6 @@ export default function Dates() {
       <Grid>
         <Grid.Col span={{ base: 12, xs: 5 }}>
           <form action={clientAction}>
-            {/* <DateInput
-              clearable
-              valueFormat="DD/MM/YYYY"
-              label="Start Date"
-              placeholder="Pick date"
-              name="startDate"
-              {...form.getInputProps("startDate")}
-              mb="md"
-            /> */}
             <DateField
               clearable
               valueFormat="DD/MM/YYYY"

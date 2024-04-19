@@ -12,7 +12,12 @@ interface DateFieldProps {
   mb?: string;
 }
 
-export const DateField: React.FC<DateFieldProps> = ({
+interface InputPropsWithKey
+  extends ReturnType<UseFormReturnType<any>["getInputProps"]> {
+  key: string;
+}
+
+export default function DateField({
   clearable,
   valueFormat,
   label,
@@ -20,7 +25,10 @@ export const DateField: React.FC<DateFieldProps> = ({
   name,
   form,
   mb,
-}) => {
+}: DateFieldProps) {
+  const inputProps = form.getInputProps(name);
+  const { key, ...otherInputProps } = inputProps as InputPropsWithKey;
+
   return (
     <DateInput
       clearable={clearable}
@@ -28,8 +36,9 @@ export const DateField: React.FC<DateFieldProps> = ({
       label={label}
       placeholder={placeholder}
       name={name}
-      {...form.getInputProps(name)}
+      {...otherInputProps}
       mb={mb}
+      key={key}
     />
   );
-};
+}
