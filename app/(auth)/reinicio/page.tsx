@@ -26,7 +26,7 @@ import classes from "./page.module.css";
 
 export default function Solicitar() {
   const form = useForm({
-    // mode: "uncontrolled",
+    mode: "uncontrolled",
     initialValues: {
       password: "",
       confirmPass: "",

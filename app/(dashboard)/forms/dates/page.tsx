@@ -11,7 +11,7 @@ import DateField from "@/app/_components/formInputs/DateField";
 
 export default function Dates() {
   const form = useForm({
-    mode: "uncontrolled", // ADD TO OTHER FORMS
+    mode: "uncontrolled",
     initialValues: {
       startDate: dayjs(new Date()).startOf("month").toDate(),
       endDate: dayjs(new Date()).toDate(),

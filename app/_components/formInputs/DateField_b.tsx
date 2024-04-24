@@ -12,6 +12,11 @@ interface DateFieldProps {
   mb?: string;
 }
 
+interface InputPropsWithKey
+  extends ReturnType<UseFormReturnType<any>["getInputProps"]> {
+  key: string;
+}
+
 export default function DateField({
   clearable,
   valueFormat,
@@ -21,6 +26,9 @@ export default function DateField({
   form,
   mb,
 }: DateFieldProps) {
+  const inputProps = form.getInputProps(name);
+  const { key, ...otherInputProps } = inputProps as InputPropsWithKey;
+
   return (
     <DateInput
       clearable={clearable}
@@ -28,8 +36,9 @@ export default function DateField({
       label={label}
       placeholder={placeholder}
       name={name}
-      {...form.getInputProps(name)}
+      {...otherInputProps}
       mb={mb}
+      key={key}
     />
   );
 }
