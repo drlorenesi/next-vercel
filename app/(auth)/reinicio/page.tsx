@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { useForm } from "@mantine/form";
 import { zodResolver } from "mantine-form-zod-resolver";
 
@@ -20,30 +21,31 @@ import { IconArrowLeft } from "@tabler/icons-react";
 import SubmitButton from "./submit-button";
 
 import { ChangeSchema } from "./schema";
-import { serverAction } from "./actions";
 
 import classes from "./page.module.css";
 
 export default function Solicitar() {
   const form = useForm({
+    // mode: "uncontrolled",
     initialValues: {
-      pass: "",
+      password: "",
       confirmPass: "",
     },
     validate: zodResolver(ChangeSchema),
   });
   const clientAction = async (formData: FormData) => {
     if (form.validate().hasErrors) return;
-    const result = await serverAction(formData);
-    if (!result.success) return console.log("Server error...", result);
     // Process form
-    console.log("Form submitted!", result);
+    const password = formData.get("password") as string;
+    const confirmPass = formData.get("confirmPass") as string;
+    console.log("Form submitted!", password, confirmPass);
     form.reset();
+    redirect("/gracias");
   };
   return (
     <Container size={460} my={20}>
       <Title className={classes.title} ta="center">
-        Cambiar contraseña
+        Reiniciar contraseña
       </Title>
       <Text c="dimmed" fz="sm" ta="center">
         Por favor ingresa tu nueva contraseña.
@@ -52,9 +54,9 @@ export default function Solicitar() {
       <form action={clientAction}>
         <Paper withBorder shadow="md" p={25} radius="md" mt="xl">
           <PasswordInput
-            name="pass"
+            name="password"
             label="Contraseña"
-            {...form.getInputProps("pass")}
+            {...form.getInputProps("password")}
           />
           <PasswordInput
             name="confirmPass"

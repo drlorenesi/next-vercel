@@ -19,13 +19,14 @@ import {
 import { IconArrowLeft } from "@tabler/icons-react";
 import SubmitButton from "./submit-button";
 
+import { createClient } from "@/utils/supabase/client";
 import { ResetSchema } from "./schema";
-import { serverAction } from "./actions";
 
 import classes from "./page.module.css";
 
 export default function Solicitar() {
   const form = useForm({
+    // mode: "uncontrolled",
     initialValues: {
       email: "",
     },
@@ -33,10 +34,13 @@ export default function Solicitar() {
   });
   const clientAction = async (formData: FormData) => {
     if (form.validate().hasErrors) return;
-    const result = await serverAction(formData);
-    if (!result.success) return console.log("Server error...", result);
     // Process form
-    console.log("Form submitted!", result);
+    const supabase = createClient();
+    const { data, error } = await supabase.auth.resetPasswordForEmail(
+      formData.get("email") as string
+    );
+    if (error) return console.log("Server error...", error);
+    console.log("Form submitted!", data);
     form.reset();
   };
   return (

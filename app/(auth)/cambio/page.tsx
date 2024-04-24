@@ -13,14 +13,14 @@ import {
 import { IconArrowLeft } from "@tabler/icons-react";
 import classes from "./page.module.css";
 
-export default function Solicitar() {
+export default function Cambio() {
   return (
     <Container size={460} my={20}>
       <Title className={classes.title} ta="center">
-        Error 😖...
+        ¡Enhorabuena 👏! Tu cuenta contraseña ha sido reiniciada ✅.
       </Title>
       <Text c="dimmed" fz="sm" ta="center">
-        Por favor revisa tu enlace e intenta de nuevo.
+        Ahora podrás iniciar sesión con tu nueva contraseña.
       </Text>
       <Group justify="center" mt="lg">
         <Anchor c="dimmed" size="sm" component={Link} href="/login">

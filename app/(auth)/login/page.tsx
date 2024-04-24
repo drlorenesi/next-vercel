@@ -26,6 +26,7 @@ import classes from "./page.module.css";
 
 export default function Login() {
   const form = useForm({
+    // mode: "uncontrolled",
     initialValues: {
       email: "",
       pass: "",

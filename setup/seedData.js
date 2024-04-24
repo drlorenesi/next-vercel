@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { mysqlConnect, query } = require("../config/db");
+const { mysqlConnect, query } = require("../utils/sql/db");
 
 // Read SQL seed query
 const seedQuery = fs.readFileSync("setup/data.sql", { encoding: "UTF-8" });
