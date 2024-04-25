@@ -65,8 +65,8 @@ const Shell: React.FC<ShellProps> = ({ children, ...props }) => {
     const supabase = createClient();
     const { error } = await supabase.auth.signOut();
     if (error) return toast.error("Error en finalizar sesión.");
-    toast.success("Sesión terminada.");
     router.push("/login");
+    toast.success("Sesión terminada.");
   };
 
   return (
