@@ -7,7 +7,7 @@ export default function SubmitButton() {
   const { pending } = useFormStatus();
 
   return (
-    <Button type="submit" fullWidth loading={pending} mt="xl">
+    <Button type="submit" loading={pending} fullWidth mt="xl">
       Crear cuenta
     </Button>
   );

@@ -11,17 +11,16 @@ import {
   rem,
 } from "@mantine/core";
 import { IconArrowLeft } from "@tabler/icons-react";
-import classes from "./page.module.css";
+import classes from "../auth.module.css";
 
 export default function Solicitar() {
   return (
     <Container size={460} my={20}>
-      <Title className={classes.title} ta="center">
-        !Gracias por Registrarte 👍!
+      <Title className={classes.subTitle} ta="center">
+        ¡Enhorabuena 👏! Tu contraseña ha sido reiniciada ✅.
       </Title>
       <Text c="dimmed" fz="sm" ta="center">
-        Se ha enviado un correo con instrucciones para verificar tu cuenta. En
-        cuanto la hayas verificado iniciarás una nueva sesión.
+        Ahora podrás iniciar sesión con tu nueva contraseña.
       </Text>
       <Group justify="center" mt="lg">
         <Anchor c="dimmed" size="sm" component={Link} href="/login">

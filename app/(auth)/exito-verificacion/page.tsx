@@ -11,16 +11,16 @@ import {
   rem,
 } from "@mantine/core";
 import { IconArrowLeft } from "@tabler/icons-react";
-import classes from "./page.module.css";
+import classes from "../auth.module.css";
 
 export default function Solicitar() {
   return (
     <Container size={460} my={20}>
-      <Title className={classes.title} ta="center">
-        Error 😖...
+      <Title className={classes.subTitle} ta="center">
+        ¡Enhorabuena 👏! Tu cuenta ha sido verificada ✅.
       </Title>
       <Text c="dimmed" fz="sm" ta="center">
-        Por favor revisa tu enlace e intenta de nuevo.
+        Ahora podrás iniciar sesión.
       </Text>
       <Group justify="center" mt="lg">
         <Anchor c="dimmed" size="sm" component={Link} href="/login">

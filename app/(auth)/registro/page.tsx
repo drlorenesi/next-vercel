@@ -17,10 +17,10 @@ import {
 } from "@mantine/core";
 
 import { createClient } from "@/utils/supabase/client";
-import SubmitButton from "./submit-button";
+import SubmitButton from "@/app/_components/formInputs/SubmitButton";
 import { RegisterSchema } from "./schema";
 
-import classes from "./page.module.css";
+import classes from "../auth.module.css";
 
 export default function Login() {
   const form = useForm({
@@ -49,11 +49,8 @@ export default function Login() {
         },
       },
     });
-    if (error?.status === 500) {
-      toast.error("Error al registrar a nuevo usario");
-      return;
-    }
-    redirect("/gracias");
+    if (error) return toast.error("Error al registrar a nuevo usario");
+    redirect("/exito-registro");
   };
 
   return (
@@ -104,7 +101,7 @@ export default function Login() {
             {...form.getInputProps("confirm")}
             mt="xs"
           />
-          <SubmitButton />
+          <SubmitButton text="Crear cuenta" fullWidth={true} mt="xl" />
         </Paper>
       </form>
     </Container>

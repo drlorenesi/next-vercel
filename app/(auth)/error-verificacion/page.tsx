@@ -11,16 +11,21 @@ import {
   rem,
 } from "@mantine/core";
 import { IconArrowLeft } from "@tabler/icons-react";
-import classes from "./page.module.css";
+import classes from "../auth.module.css";
 
 export default function Solicitar() {
   return (
     <Container size={460} my={20}>
-      <Title className={classes.title} ta="center">
-        ¡Enhorabuena 👏! Tu cuenta ha sido verificada ✅.
+      <Title className={classes.subTitle} ta="center">
+        Error 😖...
       </Title>
       <Text c="dimmed" fz="sm" ta="center">
-        Ahora podrás iniciar sesión.
+        Por favor revisa tu enlace e intenta de nuevo.
+      </Text>
+      <Text c="dimmed" fz="sm" ta="center">
+        Si estabas intentanto reiniciar tu contraseña es posible que tu enlace
+        haya caducado. Te recomendamos solicitar un nuevo reinicio de
+        contraseña.
       </Text>
       <Group justify="center" mt="lg">
         <Anchor c="dimmed" size="sm" component={Link} href="/login">
