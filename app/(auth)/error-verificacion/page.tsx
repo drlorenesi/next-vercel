@@ -1,5 +1,5 @@
 import Link from "next/link";
-
+import type { Metadata } from "next";
 import {
   Title,
   Text,
@@ -12,6 +12,10 @@ import {
 } from "@mantine/core";
 import { IconArrowLeft } from "@tabler/icons-react";
 import classes from "../auth.module.css";
+
+export const metadata: Metadata = {
+  title: "Error...",
+};
 
 export default function Solicitar() {
   return (

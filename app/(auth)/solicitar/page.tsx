@@ -1,7 +1,12 @@
+import type { Metadata } from "next";
 import { Title, Text, Container } from "@mantine/core";
 
 import classes from "../auth.module.css";
 import Form from "./form";
+
+export const metadata: Metadata = {
+  title: "Solicitar reinicio de contraseña",
+};
 
 export default function Solicitar() {
   return (

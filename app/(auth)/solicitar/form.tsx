@@ -15,11 +15,11 @@ import {
   rem,
 } from "@mantine/core";
 import { IconArrowLeft } from "@tabler/icons-react";
-
+// Components
 import { createClient } from "@/utils/supabase/client";
 import SubmitButton from "@/app/_components/formInputs/SubmitButton";
-import { ResetSchema } from "./schema";
-
+import { schema } from "./schema";
+// Classes
 import classes from "../auth.module.css";
 
 export default function Form() {
@@ -28,7 +28,7 @@ export default function Form() {
     initialValues: {
       email: "",
     },
-    validate: zodResolver(ResetSchema),
+    validate: zodResolver(schema),
   });
 
   const clientAction = async (formData: FormData) => {

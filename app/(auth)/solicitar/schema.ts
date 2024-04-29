@@ -1,5 +1,5 @@
 import { z } from "zod";
 
-export const ResetSchema = z.object({
-  email: z.string().email("Invalid email address"),
+export const schema = z.object({
+  email: z.string().email("Email inválido"),
 });

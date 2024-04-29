@@ -4,7 +4,6 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useForm } from "@mantine/form";
 import { zodResolver } from "mantine-form-zod-resolver";
-import toast from "react-hot-toast";
 import {
   Paper,
   PasswordInput,
@@ -15,11 +14,11 @@ import {
   rem,
 } from "@mantine/core";
 import { IconArrowLeft } from "@tabler/icons-react";
-
+// Components
 import { createClient } from "@/utils/supabase/client";
 import SubmitButton from "@/app/_components/formInputs/SubmitButton";
-import { ChangeSchema } from "./schema";
-
+import { schema } from "./schema";
+// Classes
 import classes from "../auth.module.css";
 
 export default function Solicitar() {
@@ -29,7 +28,7 @@ export default function Solicitar() {
       password: "",
       confirmPass: "",
     },
-    validate: zodResolver(ChangeSchema),
+    validate: zodResolver(schema),
   });
 
   const clientAction = async (formData: FormData) => {

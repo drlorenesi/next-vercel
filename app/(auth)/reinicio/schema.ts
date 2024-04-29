@@ -1,14 +1,13 @@
 import { z } from "zod";
 
-export const ChangeSchema = z
+export const schema = z
   .object({
-    password: z.string().min(6, "Password must be at least 6 charachters"),
+    password: z
+      .string()
+      .min(6, "La contraseña debe contener por lo menos 6 caracteres"),
     confirmPass: z.string(),
   })
   .refine((data) => data.password === data.confirmPass, {
-    message: "Passwords don't match",
+    message: "Las contraseñas no concuerdan",
     path: ["confirmPass"],
   });
-
-// extract the inferred type
-export type ChangeType = z.infer<typeof ChangeSchema>;
