@@ -184,10 +184,18 @@ const Shell: React.FC<ShellProps> = ({ children, ...props }) => {
         >
           <NavLink
             component={Link}
-            href="/forms/dates"
-            label="Dates"
+            href="/forms/dates-a"
+            label="Dates A"
             onClick={closeMobileNavbar}
-            active={pathname === "/forms/dates"}
+            active={pathname === "/forms/dates-a"}
+            className={navClasses.navLink}
+          />
+          <NavLink
+            component={Link}
+            href="/forms/dates-b"
+            label="Dates B"
+            onClick={closeMobileNavbar}
+            active={pathname === "/forms/dates-b"}
             className={navClasses.navLink}
           />
           <NavLink

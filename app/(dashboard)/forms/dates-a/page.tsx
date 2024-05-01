@@ -31,7 +31,7 @@ export default function Dates() {
 
   return (
     <>
-      <Title order={2}>Dates</Title>
+      <Title order={2}>Dates A</Title>
       <Grid>
         <Grid.Col span={{ base: 12, xs: 5 }}>
           <form action={clientAction}>
