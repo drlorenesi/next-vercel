@@ -11,9 +11,7 @@ export default function Text() {
         <Grid.Col span={{ base: 12, xs: 5 }}>
           <Form />
         </Grid.Col>
-        <Grid.Col span={{ base: 12, xs: 7 }}>
-          {/* {form.values ? <Code>JSON.stringify(form.values)</Code> : "nope"} */}
-        </Grid.Col>
+        <Grid.Col span={{ base: 12, xs: 7 }}>Chart Space</Grid.Col>
       </Grid>
       <Divider my="md" />
       <Grid>

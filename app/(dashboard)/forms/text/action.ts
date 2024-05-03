@@ -1,26 +1,18 @@
 "use server";
 
-// import { revalidatePath } from "next/cache";
-import { createClient } from "@/utils/supabase/server";
+// import { createClient } from "@/utils/supabase/server";
+import { validateData } from "@/app/_lib/validateData";
 
 import { schema } from "./schema";
 
-export async function testAction(formState: any, formData: FormData) {
-  console.log("Here");
-  const supabase = createClient();
-  const { data } = await supabase.auth.getUser();
-  if (!data.user) {
-    throw new Error("You must be signed in to perform this action");
-  }
-  const values = Object.fromEntries(formData);
-  const result = schema.safeParse(values);
-  if (!result.success)
-    return {
-      message: "error",
-      errors: result.error.flatten().fieldErrors,
-      fieldValues: values,
-    };
+interface FormValues {
+  [k: string]: FormDataEntryValue;
+}
 
-  // revalidatePath("/forms/text");
-  return { message: "success", errors: null, fieldValues: result.data };
+export async function testAction(values: FormValues) {
+  // Validate values
+  const { message, errors, fieldValues } = await validateData(values, schema);
+  console.log({ message, errors, fieldValues });
+  // Process Data
+  return { message, errors, fieldValues };
 }
