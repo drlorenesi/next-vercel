@@ -1,6 +1,5 @@
 "use server";
 
-// import { createClient } from "@/utils/supabase/server";
 import { validateData } from "@/app/_lib/validateData";
 
 import { schema } from "./schema";

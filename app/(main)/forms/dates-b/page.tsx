@@ -1,6 +1,6 @@
 "use client";
 
-import { Grid, Title, Divider } from "@mantine/core";
+import { Code, Fieldset, Grid, Title, Divider, Paper } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { zodResolver } from "mantine-form-zod-resolver";
 import dayjs from "dayjs";
@@ -34,29 +34,35 @@ export default function Dates() {
       <Title order={2}>Dates B</Title>
       <Grid>
         <Grid.Col span={{ base: 12, xs: 5 }}>
-          <form action={clientAction}>
-            <DateField
-              clearable
-              valueFormat="DD/MM/YYYY"
-              label="Start Date"
-              placeholder="Pick date"
-              name="startDate"
-              form={form}
-              mb="md"
-            />
-            <DateField
-              clearable
-              valueFormat="DD/MM/YYYY"
-              label="End Date"
-              placeholder="Pick date"
-              name="endDate"
-              form={form}
-              mb="md"
-            />
-            <SubmitButton />
-          </form>
+          <Fieldset variant="filled">
+            <form action={clientAction}>
+              <DateField
+                clearable
+                valueFormat="DD/MM/YYYY"
+                label="Start Date"
+                placeholder="Pick date"
+                name="startDate"
+                form={form}
+                mb="md"
+              />
+              <DateField
+                clearable
+                valueFormat="DD/MM/YYYY"
+                label="End Date"
+                placeholder="Pick date"
+                name="endDate"
+                form={form}
+                mb="md"
+              />
+              <SubmitButton />
+            </form>
+          </Fieldset>
         </Grid.Col>
-        <Grid.Col span={{ base: 12, xs: 7 }}></Grid.Col>
+        <Grid.Col span={{ base: 12, xs: 7 }}>
+          <Paper shadow="sm" withBorder p="xl">
+            <Code>Test</Code>
+          </Paper>
+        </Grid.Col>
       </Grid>
       <Divider my="md" />
       <Grid>

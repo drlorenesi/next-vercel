@@ -26,7 +26,7 @@ export default function Form() {
     const { message } = await testAction(values);
     if (message === "error") return toast.error("Ocurrió un error...");
     toast.success("Form Submitted!");
-    // form.reset();
+    form.reset();
   };
 
   return (
